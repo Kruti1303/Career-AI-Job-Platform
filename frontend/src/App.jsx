@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { HashRouter, Route, Routes } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -21,7 +21,7 @@ import ProtectedRoute from "./middleware/ProtectedRoute";
 
 const App = () => {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <Routes>
         {/* Public Routes */}
         <Route path="/" element={<Login />} />
@@ -100,8 +100,6 @@ const App = () => {
             </ProtectedRoute>
           }
         />
-
-        {/* Development Diagnostic Test Route */}
         <Route
           path="/test"
           element={
@@ -123,7 +121,7 @@ const App = () => {
         draggable
         pauseOnHover
       />
-    </BrowserRouter>
+    </HashRouter>
   );
 };
 

@@ -13,19 +13,22 @@ import com.career.repo.UsersRepo;
 @Service
 public class UserDetailesServiceImpl implements UserDetailsService {
 
-	@Autowired
-	UsersRepo urepo;
-	
-	@Override
-	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		
-		Users users = urepo.findByUsername(username);
-		
-		if(users == null) {
-			throw new UsernameNotFoundException(username);
-		}
-		
-		return new UsersPrinciple(users);
-	}
-	
+    @Autowired
+    UsersRepo urepo;
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+
+        Users users = urepo.findByEmail(username);
+
+        if (users == null) {
+            users = urepo.findByUsername(username);
+        }
+
+        if (users == null) {
+            throw new UsernameNotFoundException(username);
+        }
+
+        return new UsersPrinciple(users);
+    }
 }

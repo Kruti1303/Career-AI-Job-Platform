@@ -53,7 +53,9 @@ public class SecurityConfig {
                         .anyRequest().authenticated()
                 )
                 .sessionManagement(session ->
-                        session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                        session.sessionCreationPolicy(
+                                SessionCreationPolicy.STATELESS
+                        )
                 )
                 .authenticationProvider(authenticationprovider())
                 .addFilterBefore(
@@ -65,6 +67,7 @@ public class SecurityConfig {
 
     @Bean
     public AuthenticationProvider authenticationprovider() {
+
         DaoAuthenticationProvider provider =
                 new DaoAuthenticationProvider(detailServices);
 
@@ -76,6 +79,7 @@ public class SecurityConfig {
     @Bean
     public AuthenticationManager authenticationmanager(
             AuthenticationConfiguration config) throws Exception {
+
         return config.getAuthenticationManager();
     }
 
@@ -85,7 +89,10 @@ public class SecurityConfig {
         CorsConfiguration configuration = new CorsConfiguration();
 
         configuration.setAllowedOrigins(
-                List.of("http://localhost:5173")
+                List.of(
+                        "http://localhost:5173",
+                        "http://localhost:5174"
+                )
         );
 
         configuration.setAllowedMethods(

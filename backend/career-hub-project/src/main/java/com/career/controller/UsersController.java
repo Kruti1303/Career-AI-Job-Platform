@@ -17,7 +17,7 @@ import com.career.entity.Users;
 import com.career.service.UsersService;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:5173/")
+@CrossOrigin(origins = {"http://localhost:5173", "http://localhost:5174"})
 @RequestMapping("/api/users")
 public class UsersController {
 
